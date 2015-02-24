@@ -24,6 +24,7 @@ public class Add_Friend extends Activity implements OnClickListener{
 
     private EditText user, fname;
     private Button  add_friend;
+    //public EditText friend;
     //private Login login = new Login();
 
     // Progress Dialog
@@ -60,16 +61,22 @@ public class Add_Friend extends Activity implements OnClickListener{
         fname = (EditText)findViewById(R.id.f_username);
 
 
-        add_friend = (Button)findViewById(R.id.add_friend_btn);
+        add_friend = (Button)findViewById(R.id.add_friends_btn_2);
         add_friend.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         // TODO Auto-generated method stub
+                new Addfriend().execute();
+    }
 
-        new Addfriend().execute();
-
+    public void friendlist(View v){
+        int id = v.getId();
+        if(id == R.id.friend_list_btn) {
+            Intent j = new Intent(this, Friend_List.class);
+            startActivity(j);
+        }
     }
 
     //public String  getUser_name(){
@@ -121,23 +128,27 @@ public class Add_Friend extends Activity implements OnClickListener{
                 success = json.getInt(TAG_SUCCESS);
                 if (success == 1) {
                     Log.d("Adding Friends! Complete!", json.toString());
+                    //friend = (EditText)findViewById(R.id.f_username);
+                    //friend.setText(" ");
                     finish();
 
-                    Intent j = new Intent(Add_Friend.this, Friend_List.class);
-                    finish();
-                    startActivity(j);
+
                     return json.getString(TAG_MESSAGE);
 
 
 
                 }else if(success == 0) {
                     Log.d("Adding Friends Failure!", json.getString(TAG_MESSAGE));
+
                     return json.getString(TAG_MESSAGE);
                 }else if(success == 2) {
                     Log.d("You guys are already friends!", json.getString(TAG_MESSAGE));
+
                     return json.getString(TAG_MESSAGE);
                 }else if(success == 3) {
+
                     Log.d("You guys are alike 555!", json.getString(TAG_MESSAGE));
+
                     return json.getString(TAG_MESSAGE);
 
                 }

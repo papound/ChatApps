@@ -83,6 +83,7 @@ public class ReadComments extends ListActivity implements View.OnClickListener {
 	//}
 
     public void onClick(View v){
+
         int id = v.getId();
 
 
@@ -103,27 +104,12 @@ public class ReadComments extends ListActivity implements View.OnClickListener {
         }
     }
 
-
-
-
     //Intent x = getParentActivityIntent();
     //String user_name = x.getStringExtra("username");
 
     //public void friendAdd(View v) {
 
-
-
-
-
     //}
-
-
-
-
-
-
-
-
 
 	/**
 	 * Retrieves recent post data from the server.
